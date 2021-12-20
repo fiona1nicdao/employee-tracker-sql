@@ -1,17 +1,17 @@
-INSERT INTO department (name)
-VALUES  (Sales),
-        (Enginneering),
-        (Finance),
-        (Legal)
+INSERT INTO department (department_name)
+VALUES  ('Sales'),
+        ('Enginneering'),
+        ('Finance'),
+        ('Legal');
 
-INSERT INTO role (title, department_id,salary)
-VALUES  (sales lead, Sales, 10000),
-        (salesperson, Sales, 80000),
-        (Lead Enginneer, Enginneering, 150000),
-        (Accountant, Finance,124000),
-        (Lawyer, Legal, 19000)
+INSERT INTO roles (title, department_id,salary)
+VALUES  ('sales lead', 1, 10000),
+        ('salesperson', 1, 80000),
+        ('Lead Enginneer', 2, 150000),
+        ('Accountant', 3,124000),
+        ('Lawyer', 4, 19000);
 
-INSERT INTO role (first_name, last_name, title,department,salary,manager_id)
-VALUES  (John, Doe, sales lead, Sales, 10000, NULL),
-        (Mike, Chan, Lead Enginneer, Enginneering, 150000, NULL),
-        (Anna, Singh, Lawyer, Legal, 19000, Mike Chan)
+INSERT INTO employee (first_name, last_name, roles_id,manager_id)
+VALUES  ('John', 'Doe', 1, NULL),
+        ('Mike', 'Chan', 3, 1),
+        ('Anna', 'Singh', 5,1);
