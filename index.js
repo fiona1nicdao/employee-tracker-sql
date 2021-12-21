@@ -241,19 +241,6 @@ function initEmployee() {
         })
 };
 // update employee role
-const updateQuest = [
-    {
-        type:'list',
-        name:"employeeRole",
-        message:"Which role do you want to assign the selected employee?",
-        choices:[
-            'Sales Lead',
-            'Salesperson',
-            'lead Engineer',
-            'lawyer'
-        ]
-    }
-]
 function initUpdate(){
     // question for pick employee via first and last name
     const employeeSql = 'SELECT * FROM employee';
