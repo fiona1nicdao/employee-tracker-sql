@@ -21,6 +21,9 @@ Also add new functionalities such as allow the users to view the total unilized 
 ## Link
 https://github.com/fiona1nicdao/employee-tracker-sql
 
+### Walkthrough Video
+https://watch.screencastify.com/v/ttwykL1094oU9VxYvko6 
+
 
 ## Preview 
 ![preview of the command-line employee tracker application](./images/sql12hw.png)
