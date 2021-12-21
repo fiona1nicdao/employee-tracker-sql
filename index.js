@@ -1,4 +1,5 @@
 // import and require inquirer and mysql 2
+// add promise to all of this!! 
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const chalk = require('chalk');
@@ -243,15 +244,6 @@ function initEmployee() {
 const updateQuest = [
     {
         type:'list',
-        name:'employeeName',
-        message:"Which employee's role do you want to update?",
-        choices:[
-            'Ashley Rodriguez',
-            'Kevin Tupik'
-        ]
-    },
-    {
-        type:'list',
         name:"employeeRole",
         message:"Which role do you want to assign the selected employee?",
         choices:[
@@ -263,11 +255,56 @@ const updateQuest = [
     }
 ]
 function initUpdate(){
-    inquirer
-        .prompt(updateQuest)
-        .then((response)=>{
-            
-            console.log(`updated employee and their role`)
-        })
+    // question for pick employee via first and last name
+    const employeeSql = 'SELECT * FROM employee';
+    db.query(employeeSql, (err, data)=> {
+        if (err) throw err;
+        const employee = data.map(({first_name, last_name, id})=>({name:`${first_name} ${last_name}`, value:id}));
+        inquirer
+            .prompt([
+                {
+                    type:'list',
+                    name:'employeeName',
+                    message:"Which employee's role do you want to update?",
+                    choices:employee
+                }
+            ])
+            .then(employeeResponse=>{
+                const employees =employeeResponse.employeeName;
+                const input = [];
+                input.push(employees);
+                // question for role reassignment for selected employee via first and last name
+                const employeeRoleSql = `SELECT * FROM roles`;
+                db.query(employeeRoleSql, (err, data)=> {
+                    if (err) throw err;
+                    const employeeRole = data.map(({title, id})=>({name:title, value:id}));
+                    inquirer
+                        .prompt([
+                            {
+                                type:'list',
+                                name:"employeeRole",
+                                message:"Which role do you want to assign the selected employee?",
+                                choices:employeeRole
+                            }
+                        ])
+                        .then(employeeRoleResponse=>{
+                            const role = employeeRoleResponse.employeeRole;
+                            input.push(role)
+
+                            let employees = input[0]
+                            input[0] = role
+                            input[1] = employees
+
+                            console.log(input)
+                            const sql =`UPDATE employee SET roles_id =? WHERE id =?`;
+                            db.query(sql, input,(err,result)=>{
+                                if (err) throw err;
+                                console.log(`updated employee and their role!`);
+                                viewAllEmployee();
+                            })
+                        })
+                })
+            })
+    })
 }
 
