@@ -1,5 +1,4 @@
 // import and require inquirer and mysql 2
-// add promise to all of this!! 
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const chalk = require('chalk');
@@ -42,13 +41,10 @@ function init() {
         .prompt(questions)
         .then((response)=> {
             if (response.companyData === 'View All Departments') {
-                // console.log(`show department table`)
                 viewAllDepartments()
             } else if (response.companyData === 'View All Roles'){
-                // console.log('show roles table')
                 viewAllRoles()
             } else if (response.companyData === 'View All Employees') {
-                // console.log('show employees table')
                 viewAllEmployee()
             } else if (response.companyData === 'Add Department') {
                 initDepartment()
@@ -125,7 +121,6 @@ const roleQuest = [
         name:'salary',
         message:'What is the salary of the role?'
     },
-    // new questions/ What is the name of the the role ? / what is the salary of the role? / Which department does the role?
 ]
 // Add Role
 function initRole() {
