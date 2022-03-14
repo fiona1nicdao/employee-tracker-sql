@@ -1,5 +1,7 @@
 # employee-tracker-sql
-## Homework 12: SQL: Employee Tracker
+## Week 12: SQL: Employee Tracker
+
+![License: MIT](<https://img.shields.io/badge/License-MIT-yellow.svg>)
 
 ### Description
 - An interface that allows non-developers to view and interact with information stored in a databased. 
@@ -12,6 +14,9 @@
 npm i 
 npm start 
 ```
+
+## Licence 
+ This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ### Future Direction
 In the future, I will be refactoring the index.js to be more visually easy to navigate. 
